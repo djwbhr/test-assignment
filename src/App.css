@@ -1,0 +1,52 @@
+/* Основной контейнер для списка */
+.match-list-container {
+  height: 100%;
+  width: 100%;
+  overflow: hidden; /* Скроллинг внутри контейнера */
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Элементы списка */
+.match-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  background-color: white;
+  transition: background-color 0.3s;
+}
+
+.match-item:hover {
+  background-color: #f1f1f1;
+}
+
+/* Стили для названия и даты матча */
+.match-item div {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Заголовки и состояния загрузки/ошибок */
+.loading,
+.error,
+.no-data {
+  text-align: center;
+  font-size: 16px;
+  color: #555;
+  padding: 20px;
+}
+
+.loading {
+  color: #007bff;
+}
+
+.error {
+  color: red;
+}
+
+.no-data {
+  color: #888;
+}
