@@ -3,9 +3,10 @@ import React from "react";
 // @ts-expect-error
 import { FixedSizeList as List } from "react-window";
 import { useFetch } from "./api/endpoints/test-api";
+import "./App.css";
 
-const MatchList = () => {
-  const { data, error, isLoading } = useFetch({
+const App = () => {
+  const { data, isLoading } = useFetch({
     swr: {
       onSuccess() {
         console.log("success");
@@ -19,13 +20,11 @@ const MatchList = () => {
 
   // Обработка состояния загрузки и ошибок
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-
+  // if (error) return <div>Error: {error.message}</div>;
   // Если данных нет, отображаем пустой список
   if (!data?.data?.matches || data?.data?.matches?.length === 0)
     return <div>No data available</div>;
 
-  // Компонент для рендеринга отдельного элемента в списке
   const Row = ({
     index,
     style,
@@ -43,17 +42,22 @@ const MatchList = () => {
   };
 
   return (
-    <div className="match-list-container">
-      <List
-        height={400}
-        itemCount={data?.data?.matches?.length} // Количество элементов
-        itemSize={50} // Размер одного элемента
-        width="100%" // Ширина списка
-      >
-        {Row}
-      </List>
+    <div className="main-page">
+      <div>
+        <h2 className="title">Match Tracker</h2>
+      </div>
+      <div className="match-list-container">
+        <List
+          height={window.innerHeight}
+          width={window.innerWidth}
+          itemCount={data?.data?.matches?.length}
+          itemSize={50}
+        >
+          {Row}
+        </List>
+      </div>
     </div>
   );
 };
 
-export default MatchList;
+export default App;
